@@ -1,13 +1,13 @@
 const express =  require('express');
 const bodyParser = require ('body-parser');
-const graphqlHttp = require('express-graphql');
+const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.use('/api/v1', graphqlHttp({
+app.use('/api/v1', graphqlHTTP({
     schema: buildSchema(`
         type RootQuery {
             events: [String!]!
@@ -30,7 +30,8 @@ app.use('/api/v1', graphqlHttp({
             const eventName =args.name;
             return eventName;
         }
-    } 
+    },
+    graphiql : true
 }));
 
 app.listen(3000);
