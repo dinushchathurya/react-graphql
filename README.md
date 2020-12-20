@@ -1,4 +1,5 @@
 ![CircleCI](https://img.shields.io/circleci/build/github/dinushchathurya/react-graphql/main?token=9f7eb5ccd9a7588e33f4c13216ffc4213a46656e)
+![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/dinushchathurya/react-graphql)
 [![GitHub issues](https://img.shields.io/github/issues/dinushchathurya/react-graphql)](https://github.com/dinushchathurya/react-graphql/issues)
 [![GitHub forks](https://img.shields.io/github/forks/dinushchathurya/react-graphql)](https://github.com/dinushchathurya/react-graphql/network)
 [![GitHub stars](https://img.shields.io/github/stars/dinushchathurya/react-graphql)](https://github.com/dinushchathurya/react-graphql/stargazers)
