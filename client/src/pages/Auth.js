@@ -76,7 +76,7 @@ class Auth extends Component {
                     resData.data.login.userId,
                     resData.data.login.tokenExpiration
                 );
-           }
+            }
         })
         .catch( err=> {
             console.log(err);
