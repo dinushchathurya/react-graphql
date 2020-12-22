@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
+import AuthContext from '../context/auth-context';
 
 import './Auth.css';
 
 class Auth extends Component {
+
+    state = {
+        isLogin : true
+    }
+
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props);
         this.emailEl = React.createRef();
         this.passwordEl = React.createRef();
+    }
+
+    switchModeHandler = () => {
+        this.setState(prevState => {
+            return { isLogin: !prevState.isLogin };
+        })
     }
 
     submitHandler = (event) => {
@@ -16,8 +30,22 @@ class Auth extends Component {
         if(email.trim().lenght === 0 || password.trim().lenght === 0 ){
             return;
         }
-        const requestBody = {
+
+        let requestBody = {
             query: `
+                query {
+                    login(email: "${email}", password: "${password}"){
+                        userId
+                        token
+                        tokenExpiration
+                    }
+                }
+            `
+        };
+
+        if(!this.state.isLogin){
+            requestBody = {
+                query: `
                 mutation {
                     createUser(userInput: {email: "${email}", password: "${password}"}){
                         _id
@@ -25,6 +53,7 @@ class Auth extends Component {
                     }
                 }
             `
+            }
         }
 
         fetch('http://localhost:3000/api/v1', {
@@ -41,7 +70,13 @@ class Auth extends Component {
             return res.json();
         })
         .then(resData=> {
-            console.log(resData);
+            if (resData.data.login.token) {
+                this.context.login(
+                    resData.data.login.token,
+                    resData.data.login.userId,
+                    resData.data.login.tokenExpiration
+                );
+           }
         })
         .catch( err=> {
             console.log(err);
@@ -60,8 +95,10 @@ class Auth extends Component {
                     <input type="password" id="password" ref={this.passwordEl}/>
                 </div>
                 <div className="form-actions">
-                    <button type="button">Switch to Signup</button>
                     <button type="submit">Submit</button>
+                    <button type="button" onClick={this.switchModeHandler}>
+                        Switch to {this.state.isLogin ? 'Signup' : 'Login'}
+                    </button>
                 </div>
             </form>
         )
