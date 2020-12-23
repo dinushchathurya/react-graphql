@@ -25,6 +25,7 @@ module.exports = {
             date: Date.now(args.eventInput.date),
             creator: req.userId
         })
+        
         let createdEvent;
         try {
             const result = await event.save()
