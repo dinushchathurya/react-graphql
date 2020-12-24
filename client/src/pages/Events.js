@@ -50,20 +50,20 @@ class Events extends Component {
 
         const requestBody = {
             query: `
-          mutation {
-            createEvent(eventInput: {title: "${title}", description: "${description}", price: ${price}, date: "${date}"}) {
-              _id
-              title
-              description
-              date
-              price
-              creator {
-                _id
-                email
-              }
-            }
-          }
-        `
+                mutation {
+                    createEvent(eventInput: {title: "${title}", description: "${description}", price: ${price}, date: "${date}"}) {
+                    _id
+                    title
+                    description
+                    date
+                    price
+                    creator {
+                        _id
+                        email
+                    }
+                    }
+                }
+                `
         };
 
         const token = this.context.token;
@@ -97,20 +97,20 @@ class Events extends Component {
     fetchEvents() {
         const requestBody = {
             query: `
-          query {
-            events {
-              _id
-              title
-              description
-              date
-              price
-              creator {
-                _id
-                email
-              }
-            }
-          }
-        `
+                query {
+                    events {
+                    _id
+                    title
+                    description
+                    date
+                    price
+                    creator {
+                            _id
+                            email
+                        }
+                    }
+                }
+                `
         };
 
         fetch('http://localhost:3000/api/v1', {
