@@ -219,7 +219,7 @@ class Events extends Component {
                         canConfirm
                         onCancel={this.modalCancelHandler}
                         onConfirm={this.modalConfirmHandler}
-                        confirmText={this.context.token ? 'Book now' : 'Confirm'}
+                        confirmText='Confirm'
                     >
                         <form>
                             <div className="form-control">
