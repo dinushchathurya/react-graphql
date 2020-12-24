@@ -1,4 +1,4 @@
-.bookings__list {
+.booking__list {
     list-style: none;
     margin: 0 auto;
     padding: 0;
@@ -6,7 +6,7 @@
     max-width: 90%;
 }
 
-.bookings__item {
+.booking__item {
     margin:0.5rem 0;
     padding: 0.5rem;
     border: 1px solid #5401d1;
