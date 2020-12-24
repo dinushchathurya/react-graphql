@@ -19,20 +19,19 @@ class Bookings extends Component {
     fetchBookings = () => {
         this.setState({ isLoading: true });
         const requestBody = {
-            query: 
-            `
-            query {
-                booking {
-                    _id
-                    createdAt
-                    event {
-                        _id
-                        title
-                        date
-                        }
-                    }
-                }
-            `
+            query: `
+          query {
+            bookings {
+              _id
+             createdAt
+             event {
+               _id
+               title
+               date
+             }
+            }
+          }
+        `
         };
 
         fetch('http://localhost:3000/api/v1', {
@@ -50,7 +49,7 @@ class Bookings extends Component {
                 return res.json();
             })
             .then(resData => {
-                const bookings = resData.data.booking;
+                const bookings = resData.data.bookings;
                 this.setState({ bookings: bookings, isLoading: false });
             })
             .catch(err => {

@@ -4,7 +4,7 @@ const { transformEvent, transformBooking } = require('../resolvers/merge');
 
 module.exports = {
     /* fetch booking */
-    booking: async (args, req) => {
+    bookings: async (args, req) => {
         if (!req.isAuth) {
             throw new Error('Unauthenticated');
         }
