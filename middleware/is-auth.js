@@ -7,14 +7,13 @@ module.exports = (req, res, next) => {
         return next();
     }
     const token = authHeader.split(' ')[1];
-    if(!token || token === ''){
+    if (!token || token === '') {
         req.isAuth = false;
         return next();
     }
-    
     let decodedToken;
-    try{
-        decodedToken = jwt.verify(token, 'secret');
+    try {
+        decodedToken = jwt.verify(token, 'secretkey');
     } catch (err) {
         req.isAuth = false;
         return next();
@@ -26,4 +25,4 @@ module.exports = (req, res, next) => {
     req.isAuth = true;
     req.userId = decodedToken.userId;
     next();
-}
+};
